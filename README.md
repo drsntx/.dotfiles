@@ -1,111 +1,111 @@
-# Daniel Santos' .dotfiles
+# Daniel Santos' Dotfiles
 
-Configurações pessoais otimizadas para desenvolvimento multiplataforma (macOS e Linux) com foco em produtividade e automação.
+Optimised personal configurations for cross-platform development (macOS and Linux) with focus on productivity and automation.
 
-## 🚀 Instalação Rápida
+## 🚀 Quick Installation
 
 ```bash
-# Clone o repositório
+# Clone the repository
 git clone https://github.com/drsntx/.dotfiles.git ~/.dotfiles
 
-# Execute o script de instalação
+# Run the installation script
 cd ~/.dotfiles && ./install.sh
 ```
 
-O script detecta automaticamente seu sistema operacional e instala todas as dependências necessárias.
+The script automatically detects your operating system and installs all necessary dependencies.
 
-## 📋 Funcionalidades
+## 📋 Features
 
-### ✨ Principais Recursos
+### ✨ Key Features
 
-- **Configuração Modular**: Organizada em módulos lógicos para fácil manutenção
-- **Multiplataforma**: Funciona perfeitamente no macOS e Linux
-- **Instalação Automática**: Script inteligente que detecta o SO e instala dependências
-- **Oh My Zsh Integrado**: Framework completo com plugins essenciais
-- **Starship Prompt**: Prompt moderno e rápido com integração Git
-- **Ferramentas Modernas**: Substitutos modernos para comandos tradicionais
-- **1Password Integration**: Configuração segura para SSH e CLI
+- **Modular Configuration**: Organised into logical modules for easy maintenance
+- **Cross-Platform**: Works seamlessly on macOS and Linux
+- **Automated Installation**: Intelligent script that detects OS and installs dependencies
+- **Oh My Zsh Integration**: Complete framework with essential plugins
+- **Starship Prompt**: Modern and fast prompt with Git integration
+- **Modern Tools**: Contemporary replacements for traditional commands
+- **1Password Integration**: Secure configuration for SSH and CLI
 
-### 🔧 Ferramentas Incluídas
+### 🔧 Included Tools
 
-| Ferramenta | Substitui | Descrição |
-|------------|-----------|-----------|
-| `eza` | `ls` | Listagem de arquivos moderna com ícones |
-| `bat` | `cat` | Visualizador de arquivos com syntax highlighting |
-| `fd` | `find` | Busca de arquivos rápida e intuitiva |
-| `ripgrep` | `grep` | Busca em texto ultrarrápida |
-| `fzf` | - | Fuzzy finder para histórico e arquivos |
-| `starship` | - | Prompt cross-shell personalizável |
+| Tool | Replaces | Description |
+|------|----------|-------------|
+| `eza` | `ls` | Modern file listing with icons |
+| `bat` | `cat` | File viewer with syntax highlighting |
+| `fd` | `find` | Fast and intuitive file search |
+| `ripgrep` | `grep` | Ultra-fast text search |
+| `fzf` | - | Fuzzy finder for history and files |
+| `starship` | - | Customisable cross-shell prompt |
 
-## 🏗️ Estrutura do Projeto
+## 🏗️ Project Structure
 
 ```
 .dotfiles/
-├── install.sh                   # Script de instalação automática
-├── dot_zshrc                    # Configuração principal do Zsh
+├── install.sh                   # Automated installation script
+├── dot_zshrc                    # Main Zsh configuration
 ├── zsh/
-│   └── zsh.d/                   # Módulos de configuração
-│       ├── os_detection.zsh     # Detecção de sistema operacional
-│       ├── aliases.zsh          # Aliases personalizados
-│       ├── functions.zsh        # Funções úteis
-│       ├── history.zsh          # Configuração de histórico
-│       ├── paths.zsh            # Gerenciamento de PATH
-│       ├── plugins.zsh          # Configuração de plugins
-│       └── init.zsh             # Inicialização do shell
+│   └── zsh.d/                   # Configuration modules
+│       ├── os_detection.zsh     # Operating system detection
+│       ├── aliases.zsh          # Custom aliases
+│       ├── functions.zsh        # Useful functions
+│       ├── history.zsh          # History configuration
+│       ├── paths.zsh            # PATH management
+│       ├── plugins.zsh          # Plugin configuration
+│       └── init.zsh             # Shell initialisation
 ├── starship/
-│   └── starship.toml           # Configuração do prompt
+│   └── starship.toml           # Prompt configuration
 ├── config/
-│   ├── 1Password/              # Configurações do 1Password
+│   ├── 1Password/              # 1Password configurations
 │   └── op/                     # 1Password CLI
-├── ansible/                    # Configurações do Ansible
-├── clean_history.zsh           # Script de limpeza de histórico
-└── README.md                   # Esta documentação
+├── ansible/                    # Ansible configurations
+├── clean_history.zsh           # History cleaning script
+└── README.md                   # This documentation
 ```
 
-## 🛠️ Dependências
+## 🛠️ Dependencies
 
-### Obrigatórias
+### Required
 
-- **Zsh** - Shell principal
-- **Git** - Controle de versão
-- **Curl** - Download de arquivos
+- **Zsh** - Main shell
+- **Git** - Version control
+- **Curl** - File downloads
 
-### Instaladas Automaticamente
+### Automatically Installed
 
-- **Oh My Zsh** - Framework do Zsh
-- **Starship** - Prompt moderno
-- **eza** - Substituto moderno do ls
-- **bat** - Substituto moderno do cat
-- **fd** - Substituto moderno do find
-- **ripgrep** - Busca em texto rápida
+- **Oh My Zsh** - Zsh framework
+- **Starship** - Modern prompt
+- **eza** - Modern ls replacement
+- **bat** - Modern cat replacement
+- **fd** - Modern find replacement
+- **ripgrep** - Fast text search
 - **fzf** - Fuzzy finder
 
-### Opcionais
+### Optional
 
-- **1Password CLI** - Gerenciamento de senhas
-- **Docker** - Containerização
-- **Ansible** - Automação de configuração
+- **1Password CLI** - Password management
+- **Docker** - Containerisation
+- **Ansible** - Configuration automation
 
-## 📦 Instalação Manual
+## 📦 Manual Installation
 
-Se preferir instalar manualmente ou personalizar o processo:
+If you prefer to install manually or customise the process:
 
-### 1. Clone o Repositório
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/drsntx/.dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ```
 
-### 2. Instale as Dependências
+### 2. Install Dependencies
 
 #### macOS (Homebrew)
 
 ```bash
-# Instalar Homebrew se necessário
+# Install Homebrew if needed
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Instalar dependências
+# Install dependencies
 brew install zsh git starship eza bat fd ripgrep fzf
 ```
 
@@ -123,7 +123,7 @@ wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sud
 echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
 sudo apt update && sudo apt install eza
 
-# Outras ferramentas
+# Other tools
 sudo apt install bat fd-find ripgrep fzf
 ```
 
@@ -143,13 +143,13 @@ curl -sS https://starship.rs/install.sh | sh
 sudo pacman -S eza bat fd ripgrep fzf
 ```
 
-### 3. Instale o Oh My Zsh
+### 3. Install Oh My Zsh
 
 ```bash
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-### 4. Instale os Plugins do Zsh
+### 4. Install Zsh Plugins
 
 ```bash
 # zsh-autosuggestions
@@ -162,135 +162,135 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/cust
 git clone https://github.com/zsh-users/zsh-history-substring-search ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search
 ```
 
-### 5. Crie os Symlinks
+### 5. Create Symlinks
 
 ```bash
-# Backup dos arquivos existentes
+# Backup existing files
 [[ -f ~/.zshrc ]] && mv ~/.zshrc ~/.zshrc.backup
 
-# Criar symlinks
+# Create symlinks
 ln -sf ~/.dotfiles/dot_zshrc ~/.zshrc
 mkdir -p ~/.config/starship
 ln -sf ~/.dotfiles/starship/starship.toml ~/.config/starship/starship.toml
 ```
 
-### 6. Configure o Zsh como Shell Padrão
+### 6. Set Zsh as Default Shell
 
 ```bash
 chsh -s $(which zsh)
 ```
 
-## ⚙️ Configuração
+## ⚙️ Configuration
 
-### Módulos de Configuração
+### Configuration Modules
 
 #### `os_detection.zsh`
 
-Detecta automaticamente o sistema operacional e configura paths específicos:
+Automatically detects the operating system and configures platform-specific paths:
 
-- **macOS**: Homebrew paths (Apple Silicon e Intel)
-- **Linux**: Paths padrão e específicos por distribuição
+- **macOS**: Homebrew paths (Apple Silicon and Intel)
+- **Linux**: Standard paths and distribution-specific settings
 
 #### `aliases.zsh`
 
-Aliases organizados por categoria:
+Aliases organised by category:
 
-- **Navegação**: `..`, `...`, `~`, `-`
-- **Arquivos**: `ll`, `la`, `lt` (com eza)
+- **Navigation**: `..`, `...`, `~`, `-`
+- **Files**: `ll`, `la`, `lt` (with eza)
 - **Git**: `g`, `ga`, `gc`, `gp`, `gst`
 - **Docker**: `d`, `dc`, `dps`, `di`
-- **Sistema**: `reload`, `sysinfo`, `weather`
+- **System**: `reload`, `sysinfo`, `weather`
 
 #### `functions.zsh`
 
-Funções úteis para produtividade:
+Useful functions for productivity:
 
-- `mkcd()` - Criar diretório e navegar
-- `extract()` - Extrair qualquer arquivo compactado
-- `backup()` - Criar backup com timestamp
-- `serve()` - Servidor HTTP rápido
-- `genpass()` - Gerar senhas seguras
+- `mkcd()` - Create directory and navigate
+- `extract()` - Extract any compressed file
+- `backup()` - Create timestamped backup
+- `serve()` - Quick HTTP server
+- `genpass()` - Generate secure passwords
 
 #### `plugins.zsh`
 
-Configuração otimizada de plugins:
+Optimised plugin configuration:
 
-- **autosuggestions**: Sugestões baseadas no histórico
-- **syntax-highlighting**: Destaque de sintaxe em tempo real
-- **history-substring-search**: Busca inteligente no histórico
-- **FZF**: Integração completa com preview
+- **autosuggestions**: History-based suggestions
+- **syntax-highlighting**: Real-time syntax highlighting
+- **history-substring-search**: Intelligent history search
+- **FZF**: Complete integration with preview
 
-### Personalização
+### Customisation
 
-#### Aliases Locais
+#### Local Aliases
 
-Crie `~/.aliases.local` para aliases pessoais:
+Create `~/.aliases.local` for personal aliases:
 
 ```bash
-# Seus aliases personalizados
+# Your custom aliases
 alias work='cd ~/Projects/work'
 alias personal='cd ~/Projects/personal'
 ```
 
-#### Variáveis de Ambiente Locais
+#### Local Environment Variables
 
-Crie `~/.env.local` para variáveis específicas:
+Create `~/.env.local` for specific variables:
 
 ```bash
-export CUSTOM_VAR="valor"
-export API_KEY="sua_chave_aqui"
+export CUSTOM_VAR="value"
+export API_KEY="your_key_here"
 ```
 
-#### Configuração Local do Zsh
+#### Local Zsh Configuration
 
-Crie `~/.zshrc.local` para configurações específicas:
+Create `~/.zshrc.local` for specific configurations:
 
 ```bash
-# Configurações locais que não devem ser versionadas
+# Local configurations that shouldn't be versioned
 export WORK_PROJECT_PATH="/path/to/work/projects"
 ```
 
-## 🔐 Configuração do 1Password
+## 🔐 1Password Configuration
 
 ### SSH Agent
 
-O 1Password pode gerenciar suas chaves SSH automaticamente:
+1Password can manage your SSH keys automatically:
 
-1. Instale o 1Password e o 1Password CLI
-2. Configure o SSH agent no 1Password
-3. As configurações já estão incluídas nos dotfiles
+1. Install 1Password and 1Password CLI
+2. Configure SSH agent in 1Password
+3. Configurations are already included in dotfiles
 
 ### CLI Integration
 
-Para usar o 1Password CLI com aliases seguros:
+To use 1Password CLI with secure aliases:
 
 ```bash
-# Já configurado nos dotfiles
-alias brew="op plugin run -- brew"  # Homebrew com 1Password
+# Already configured in dotfiles
+alias brew="op plugin run -- brew"  # Homebrew with 1Password
 ```
 
-## 🎨 Personalização do Starship
+## 🎨 Starship Customisation
 
-O prompt Starship está configurado com:
+The Starship prompt is configured with:
 
-- **Ícones do OS**: Mostra o sistema operacional atual
-- **Informações Git**: Branch, status e modificações
-- **Duração de Comandos**: Tempo de execução
-- **Ambientes Python**: Virtualenv e versão
-- **Integração Docker**: Contexto quando relevante
+- **OS Icons**: Shows current operating system
+- **Git Information**: Branch, status and modifications
+- **Command Duration**: Execution time
+- **Python Environments**: Virtualenv and version
+- **Docker Integration**: Context when relevant
 
-Para personalizar, edite `~/.dotfiles/starship/starship.toml`.
+To customise, edit `~/.dotfiles/starship/starship.toml`.
 
-## 🔄 Manutenção
+## 🔄 Maintenance
 
-### Atualizar Dotfiles
+### Update Dotfiles
 
 ```bash
 cd ~/.dotfiles
 git pull origin main
 ```
 
-### Atualizar Dependências
+### Update Dependencies
 
 #### macOS
 
@@ -316,77 +316,77 @@ sudo dnf update
 sudo pacman -Syu
 ```
 
-### Limpar Histórico
+### Clean History
 
 ```bash
-# Usar a função incluída
+# Use the included function
 clean_history
 
-# Ou executar o script diretamente
+# Or run the script directly
 ~/.dotfiles/clean_history.zsh
 ```
 
-## 🚨 Solução de Problemas
+## 🚨 Troubleshooting
 
-### Zsh não é o Shell Padrão
+### Zsh is not the Default Shell
 
 ```bash
-# Verificar shells disponíveis
+# Check available shells
 cat /etc/shells
 
-# Definir Zsh como padrão
+# Set Zsh as default
 chsh -s $(which zsh)
 ```
 
-### Plugins não Carregam
+### Plugins Don't Load
 
 ```bash
-# Verificar se Oh My Zsh está instalado
+# Check if Oh My Zsh is installed
 ls -la ~/.oh-my-zsh
 
-# Reinstalar plugins
+# Reinstall plugins
 cd ~/.oh-my-zsh/custom/plugins
 rm -rf zsh-*
-# Execute novamente a instalação dos plugins
+# Run plugin installation again
 ```
 
-### Starship não Aparece
+### Starship Doesn't Appear
 
 ```bash
-# Verificar se está instalado
+# Check if installed
 which starship
 
-# Verificar configuração
+# Check configuration
 echo $STARSHIP_CONFIG
 
-# Reinstalar
+# Reinstall
 curl -sS https://starship.rs/install.sh | sh
 ```
 
-### Ferramentas Modernas não Funcionam
+### Modern Tools Don't Work
 
 ```bash
-# Verificar instalação
+# Check installation
 which eza bat fd rg fzf
 
-# Reinstalar conforme seu sistema operacional
+# Reinstall according to your operating system
 ```
 
-## 🤝 Contribuição
+## 🤝 Contributing
 
-Este é um repositório pessoal, mas sugestões são bem-vindas:
+This is a personal repository, but suggestions are welcome:
 
-1. Fork o repositório
-2. Crie uma branch para sua feature
-3. Faça commit das mudanças
-4. Abra um Pull Request
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Open a Pull Request
 
-## 📄 Licença
+## 📄 Licence
 
-Configurações pessoais - use por sua conta e risco.
+Personal configuration files - use at your own discretion.
 
 ---
 
-**Autor**: Daniel Santos  
-**Contato**: [GitHub](https://github.com/drsntx)  
-**Última Atualização**: Dezembro 2024
+**Author**: Daniel Santos  
+**Contact**: [GitHub](https://github.com/drsntx)  
+**Last Updated**: June 2025
