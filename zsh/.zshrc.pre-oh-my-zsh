@@ -1,5 +1,142 @@
-# Zsh configuration file for setting up the environment
-# Load custom Zsh configuration files
-for file in "$ZDOTDIR/zsh.d/"*.zsh; do
-  source "$file"
-done
+#!/bin/zsh
+# Daniel Santos' .zshrc - VERSÃO CORRIGIDA
+# Configuração principal do Zsh com ordem de carregamento correta
+
+# ============================================================================
+# INICIALIZAÇÃO BÁSICA (DEVE VIR PRIMEIRO)
+# ============================================================================
+
+# Set ZDOTDIR if not already set
+export ZDOTDIR="${ZDOTDIR:-$HOME/.dotfiles/zsh}"
+
+# Create zsh directory if it doesn't exist
+[[ ! -d "$ZDOTDIR" ]] && mkdir -p "$ZDOTDIR"
+
+# ============================================================================
+# OH MY ZSH CONFIGURATION (ANTES DOS MÓDULOS)
+# ============================================================================
+
+# Path to Oh My Zsh installation (CAMINHO CORRETO)
+export ZSH="$HOME/.oh-my-zsh"
+
+# Oh My Zsh theme (using Starship instead)
+ZSH_THEME=""
+
+# Oh My Zsh plugins
+plugins=(
+    git
+    colored-man-pages
+    extract
+    web-search
+)
+
+# Load Oh My Zsh PRIMEIRO (se disponível)
+if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
+    source "$ZSH/oh-my-zsh.sh"
+else
+    echo "⚠️  Oh My Zsh não encontrado em $ZSH"
+    echo "   Execute: sh -c \"\$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
+fi
+
+# ============================================================================
+# INICIALIZAR COMPLETIONS (ANTES DE USAR COMPDEF)
+# ============================================================================
+
+# Initialize completions ANTES de carregar módulos
+autoload -Uz compinit
+compinit
+
+# ============================================================================
+# CARREGAR MÓDULOS DOS DOTFILES (ORDEM ESPECÍFICA)
+# ============================================================================
+
+# Função para carregar módulos com verificação de erro
+load_dotfile_module() {
+    local module_file="$1"
+    local module_name="$(basename "$module_file" .zsh)"
+    
+    if [[ -r "$module_file" ]]; then
+        source "$module_file"
+        # echo "✓ Loaded: $module_name"
+    else
+        echo "⚠️  Module not found: $module_file"
+    fi
+}
+
+# Carregar módulos na ordem correta
+if [[ -d "$HOME/.dotfiles/zsh/zsh.d" ]]; then
+    # 1. Detecção de OS (primeiro)
+    load_dotfile_module "$HOME/.dotfiles/zsh/zsh.d/os_detection.zsh"
+    
+    # 2. Configuração de paths
+    load_dotfile_module "$HOME/.dotfiles/zsh/zsh.d/paths.zsh"
+    
+    # 3. Histórico
+    load_dotfile_module "$HOME/.dotfiles/zsh/zsh.d/history.zsh"
+    
+    # 4. Aliases (antes das funções para evitar conflitos)
+    load_dotfile_module "$HOME/.dotfiles/zsh/zsh.d/aliases.zsh"
+    
+    # 5. Funções (depois dos aliases)
+    load_dotfile_module "$HOME/.dotfiles/zsh/zsh.d/functions.zsh"
+    
+    # 6. Plugins (depois de tudo estar configurado)
+    load_dotfile_module "$HOME/.dotfiles/zsh/zsh.d/plugins.zsh"
+    
+    # 7. Inicialização final
+    load_dotfile_module "$HOME/.dotfiles/zsh/zsh.d/init.zsh"
+else
+    echo "⚠️  Diretório de módulos não encontrado: $HOME/.dotfiles/zsh/zsh.d"
+fi
+
+# ============================================================================
+# PLUGINS EXTERNOS (DEPOIS DO OH MY ZSH)
+# ============================================================================
+
+# Load external plugins manually if Oh My Zsh plugins don't work
+ZSH_CUSTOM_PLUGINS="$HOME/.oh-my-zsh/custom/plugins"
+
+# zsh-autosuggestions
+if [[ -f "$ZSH_CUSTOM_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
+    source "$ZSH_CUSTOM_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh"
+fi
+
+# zsh-syntax-highlighting (DEVE SER CARREGADO POR ÚLTIMO)
+if [[ -f "$ZSH_CUSTOM_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
+    source "$ZSH_CUSTOM_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
+
+# zsh-history-substring-search
+if [[ -f "$ZSH_CUSTOM_PLUGINS/zsh-history-substring-search/zsh-history-substring-search.zsh" ]]; then
+    source "$ZSH_CUSTOM_PLUGINS/zsh-history-substring-search/zsh-history-substring-search.zsh"
+    
+    # Key bindings for history substring search
+    bindkey '^[[A' history-substring-search-up
+    bindkey '^[[B' history-substring-search-down
+    bindkey -M vicmd 'k' history-substring-search-up
+    bindkey -M vicmd 'j' history-substring-search-down
+fi
+
+# ============================================================================
+# CONFIGURAÇÕES FINAIS
+# ============================================================================
+
+# Load clean_history script function
+[[ -f "$HOME/.dotfiles/clean_history.zsh" ]] && source "$HOME/.dotfiles/clean_history.zsh"
+
+# FZF integration if available
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+
+# Load local customizations if they exist (SEMPRE POR ÚLTIMO)
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
+
+# ============================================================================
+# VERIFICAÇÃO DE SAÚDE (OPCIONAL - REMOVER DEPOIS DE TESTAR)
+# ============================================================================
+
+# Uncomment to debug loading issues
+# echo "✅ .zshrc loaded successfully"
+# echo "🐚 Shell: $SHELL"
+# echo "📁 ZDOTDIR: $ZDOTDIR"
+# echo "⭐ Starship config: $STARSHIP_CONFIG"
+

@@ -1,23 +1,14 @@
-# Set ZDOTDIR if not already set
-export ZDOTDIR="$HOME/.dotfiles/zsh"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-command -v starship >/dev/null && eval "$(starship init zsh)"
-eval "$(op completion zsh)"; compdef _op op
-
-# Load SSH keys if they exist
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519
-
 # Path to your Oh My Zsh installation.
-export ZSH="$ZDOTDIR/ohmyzsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
+ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -34,11 +25,11 @@ export ZSH="$ZDOTDIR/ohmyzsh"
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
-zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-zstyle ':omz:update' frequency 13
+# zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -82,11 +73,6 @@ zstyle ':omz:update' frequency 13
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-source "$ZDOTDIR/zsh.d/paths.zsh"
-source "$ZDOTDIR/zsh.d/init.zsh"
-source "$ZDOTDIR/zsh.d/history.zsh"
-source "$ZDOTDIR/zsh.d/aliases.zsh"
-source "$ZDOTDIR/zsh.d/plugins.zsh"
 
 # User configuration
 
@@ -116,8 +102,3 @@ source "$ZDOTDIR/zsh.d/plugins.zsh"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Load modular Zsh configs
-for config_file in $ZDOTDIR/zsh.d/*.zsh(N); do
-  source "$config_file"
-done

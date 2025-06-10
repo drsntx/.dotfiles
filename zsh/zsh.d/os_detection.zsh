@@ -63,4 +63,3 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Starship configuration path
 export STARSHIP_CONFIG="$HOME/.dotfiles/starship/starship.toml"
-

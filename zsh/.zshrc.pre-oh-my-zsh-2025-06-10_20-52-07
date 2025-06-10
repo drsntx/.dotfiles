@@ -1,0 +1,5 @@
+# Zsh configuration file for setting up the environment
+# Load custom Zsh configuration files
+for file in "$ZDOTDIR/zsh.d/"*.zsh; do
+  source "$file"
+done

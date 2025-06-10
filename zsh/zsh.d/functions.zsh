@@ -21,62 +21,10 @@ extract() {
             *.zip)       unzip "$1"       ;;
             *.Z)         uncompress "$1"  ;;
             *.7z)        7z x "$1"        ;;
-            *.xz)        unxz "$1"        ;;
-            *.lzma)      unlzma "$1"      ;;
             *)           echo "'$1' cannot be extracted via extract()" ;;
         esac
     else
         echo "'$1' is not a valid file"
-    fi
-}
-
-# Find file by name
-ff() {
-    if command -v fd >/dev/null 2>&1; then
-        fd "$1"
-    else
-        find . -name "*$1*" -type f
-    fi
-}
-
-# Find directory by name
-fd_dir() {
-    if command -v fd >/dev/null 2>&1; then
-        fd -t d "$1"
-    else
-        find . -name "*$1*" -type d
-    fi
-}
-
-# Search in files
-search() {
-    if command -v rg >/dev/null 2>&1; then
-        rg "$1"
-    else
-        grep -r "$1" .
-    fi
-}
-
-# Get file size
-filesize() {
-    if [[ -f "$1" ]]; then
-        if [[ "$DOTFILES_OS" == "macos" ]]; then
-            stat -f%z "$1" | numfmt --to=iec
-        else
-            stat -c%s "$1" | numfmt --to=iec
-        fi
-    else
-        echo "File not found: $1"
-    fi
-}
-
-# Create backup of file
-backup() {
-    if [[ -f "$1" ]]; then
-        cp "$1" "$1.backup.$(date +%Y%m%d_%H%M%S)"
-        echo "Backup created: $1.backup.$(date +%Y%m%d_%H%M%S)"
-    else
-        echo "File not found: $1"
     fi
 }
 
@@ -112,53 +60,6 @@ myip() {
     fi
 }
 
-# Port checker
-port_check() {
-    local host=${1:-localhost}
-    local port=$2
-    
-    if [[ -z "$port" ]]; then
-        echo "Usage: port_check [host] <port>"
-        return 1
-    fi
-    
-    if command -v nc >/dev/null 2>&1; then
-        nc -z "$host" "$port" && echo "Port $port is open on $host" || echo "Port $port is closed on $host"
-    else
-        timeout 3 bash -c "</dev/tcp/$host/$port" && echo "Port $port is open on $host" || echo "Port $port is closed on $host"
-    fi
-}
-
-# Git functions
-git_clean_branches() {
-    echo "Cleaning up merged branches..."
-    git branch --merged | grep -v "\*\|main\|master\|develop" | xargs -n 1 git branch -d
-}
-
-git_size() {
-    echo "Repository size:"
-    du -sh .git
-    echo
-    echo "Largest files:"
-    git rev-list --objects --all | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' | sed -n 's/^blob //p' | sort --numeric-sort --key=2 | tail -10
-}
-
-# Docker functions
-docker_cleanup() {
-    echo "Cleaning up Docker..."
-    docker system prune -f
-    docker volume prune -f
-    docker image prune -a -f
-}
-
-docker_stats() {
-    echo "Docker system information:"
-    docker system df
-    echo
-    echo "Running containers:"
-    docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
-}
-
 # System information
 sysinfo() {
     echo "System Information:"
@@ -168,15 +69,14 @@ sysinfo() {
     echo "Architecture: $(uname -m)"
     
     if [[ "$DOTFILES_OS" == "linux" ]]; then
-        echo "Distribution: $(cat /etc/os-release | grep PRETTY_NAME | cut -d'"' -f2)"
+        if [[ -f /etc/os-release ]]; then
+            echo "Distribution: $(cat /etc/os-release | grep PRETTY_NAME | cut -d'"' -f2)"
+        fi
     elif [[ "$DOTFILES_OS" == "macos" ]]; then
         echo "macOS Version: $(sw_vers -productVersion)"
     fi
     
     echo "Hostname: $(hostname)"
-    echo "Uptime: $(uptime | awk -F'up ' '{print $2}' | awk -F', load' '{print $1}')"
-    echo "Memory: $(free -h 2>/dev/null | grep Mem | awk '{print $3 "/" $2}' || echo "N/A")"
-    echo "Disk Usage: $(df -h / | tail -1 | awk '{print $3 "/" $2 " (" $5 " used)"}')"
 }
 
 # Weather function
@@ -189,50 +89,7 @@ weather() {
     fi
 }
 
-# URL shortener using tinyurl
-shorten() {
-    if [[ -z "$1" ]]; then
-        echo "Usage: shorten <URL>"
-        return 1
-    fi
-    
-    curl -s "http://tinyurl.com/api-create.php?url=$1"
-    echo
-}
-
-# QR code generator (requires qrencode)
-qr() {
-    if [[ -z "$1" ]]; then
-        echo "Usage: qr <text>"
-        return 1
-    fi
-    
-    if command -v qrencode >/dev/null 2>&1; then
-        qrencode -t UTF8 "$1"
-    else
-        echo "qrencode not installed. Install with:"
-        case "$DOTFILES_OS" in
-            "macos") echo "brew install qrencode" ;;
-            "linux") echo "sudo apt install qrencode" ;;
-        esac
-    fi
-}
-
-# Convert video to GIF
-vid2gif() {
-    if [[ $# -ne 2 ]]; then
-        echo "Usage: vid2gif <input_video> <output_gif>"
-        return 1
-    fi
-    
-    if command -v ffmpeg >/dev/null 2>&1; then
-        ffmpeg -i "$1" -vf "fps=10,scale=320:-1:flags=lanczos" -c:v gif "$2"
-    else
-        echo "ffmpeg not installed"
-    fi
-}
-
-# Clean Zsh history (improved version of the existing script)
+# Clean Zsh history
 clean_history() {
     local hist_file="${HISTFILE:-$ZDOTDIR/.zsh_history}"
     local backup_file="$hist_file.backup.$(date +%Y%m%d_%H%M%S)"
@@ -251,4 +108,3 @@ clean_history() {
         echo "History file not found: $hist_file"
     fi
 }
-

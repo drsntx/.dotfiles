@@ -1,6 +1,6 @@
 # Daniel Santos' Dotfiles
 
-Optimised personal configurations for cross-platform development (macOS and Linux) with focus on productivity and automation.
+Professional development environment configuration optimised for cross-platform productivity (macOS and Linux). Built for efficiency, automation, and seamless workflow integration.
 
 ## 🚀 Quick Installation
 
@@ -8,34 +8,38 @@ Optimised personal configurations for cross-platform development (macOS and Linu
 # Clone the repository
 git clone https://github.com/drsntx/.dotfiles.git ~/.dotfiles
 
-# Run the installation script
+# Run the automated installation script
 cd ~/.dotfiles && ./install.sh
 ```
 
-The script automatically detects your operating system and installs all necessary dependencies.
+The installation script automatically detects your operating system and installs all necessary dependencies.
 
-## 📋 Features
+## ✨ Key Features
 
-### ✨ Key Features
+### 🎯 Core Capabilities
+- **Cross-Platform Compatibility**: Seamless operation on macOS and Linux distributions
+- **Intelligent OS Detection**: Automatic configuration based on your system
+- **Modular Architecture**: Organised configuration modules for easy maintenance
+- **Automated Installation**: One-command setup with dependency management
+- **Modern Tool Integration**: Contemporary replacements for traditional CLI tools
+- **Professional Workflow**: Optimised for development and system administration
 
-- **Modular Configuration**: Organised into logical modules for easy maintenance
-- **Cross-Platform**: Works seamlessly on macOS and Linux
-- **Automated Installation**: Intelligent script that detects OS and installs dependencies
-- **Oh My Zsh Integration**: Complete framework with essential plugins
-- **Starship Prompt**: Modern and fast prompt with Git integration
-- **Modern Tools**: Contemporary replacements for traditional commands
-- **1Password Integration**: Secure configuration for SSH and CLI
+### 🛠️ Included Modern Tools
 
-### 🔧 Included Tools
+| Tool | Replaces | Purpose |
+|------|----------|---------|
+| `eza` | `ls` | Enhanced file listing with icons and git integration |
+| `bat` | `cat` | Syntax-highlighted file viewer with line numbers |
+| `fd` | `find` | Fast and intuitive file search with regex support |
+| `ripgrep` | `grep` | Ultra-fast text search across files |
+| `fzf` | - | Fuzzy finder for files, history, and command completion |
+| `starship` | - | Fast, customisable cross-shell prompt |
 
-| Tool | Replaces | Description |
-|------|----------|-------------|
-| `eza` | `ls` | Modern file listing with icons |
-| `bat` | `cat` | File viewer with syntax highlighting |
-| `fd` | `find` | Fast and intuitive file search |
-| `ripgrep` | `grep` | Ultra-fast text search |
-| `fzf` | - | Fuzzy finder for history and files |
-| `starship` | - | Customisable cross-shell prompt |
+### 🔧 Framework Integration
+- **Oh My Zsh**: Complete framework with curated plugins
+- **Starship Prompt**: Modern prompt with git status and system information
+- **1Password Integration**: Secure SSH key and credential management
+- **FZF Integration**: Enhanced command-line navigation and search
 
 ## 🏗️ Project Structure
 
@@ -43,64 +47,70 @@ The script automatically detects your operating system and installs all necessar
 .dotfiles/
 ├── install.sh                   # Automated installation script
 ├── dot_zshrc                    # Main Zsh configuration
+├── README.md                    # This documentation
+├── .gitignore                   # Git ignore patterns
 ├── zsh/
-│   └── zsh.d/                   # Configuration modules
+│   └── zsh.d/                   # Modular configuration files
 │       ├── os_detection.zsh     # Operating system detection
-│       ├── aliases.zsh          # Custom aliases
-│       ├── functions.zsh        # Useful functions
+│       ├── aliases.zsh          # Command aliases and shortcuts
+│       ├── functions.zsh        # Custom shell functions
 │       ├── history.zsh          # History configuration
-│       ├── paths.zsh            # PATH management
-│       ├── plugins.zsh          # Plugin configuration
-│       └── init.zsh             # Shell initialisation
+│       ├── paths.zsh            # PATH and environment management
+│       ├── plugins.zsh          # Plugin configuration and loading
+│       └── init.zsh             # Final initialisation steps
 ├── starship/
 │   └── starship.toml           # Prompt configuration
 ├── config/
-│   ├── 1Password/              # 1Password configurations
-│   └── op/                     # 1Password CLI
-├── ansible/                    # Ansible configurations
-├── clean_history.zsh           # History cleaning script
-└── README.md                   # This documentation
+│   ├── 1Password/              # 1Password SSH agent configuration
+│   └── op/                     # 1Password CLI integration
+├── ansible/                    # Ansible configuration files
+│   ├── ansible.cfg             # Ansible settings
+│   └── hosts                   # Inventory configuration
+└── clean_history.zsh           # History cleaning utility
 ```
 
-## 🛠️ Dependencies
+## 📋 System Requirements
 
-### Required
+### Essential Dependencies
+- **Zsh 5.0+** - Primary shell environment
+- **Git 2.0+** - Version control system
+- **Curl** - HTTP client for downloads
+- **Internet Connection** - For package installation
 
-- **Zsh** - Main shell
-- **Git** - Version control
-- **Curl** - File downloads
+### Supported Operating Systems
+- **macOS** - Intel and Apple Silicon (M1/M2/M3)
+- **Ubuntu** - 18.04 LTS and newer
+- **Debian** - 10 (Buster) and newer
+- **Fedora** - 30 and newer
+- **Arch Linux** - Rolling release
+- **CentOS/RHEL** - 8 and newer
 
-### Automatically Installed
+### Automatically Installed Tools
+- Oh My Zsh framework with essential plugins
+- Starship prompt with custom configuration
+- Modern CLI tools (eza, bat, fd, ripgrep, fzf)
+- Zsh plugins (autosuggestions, syntax highlighting, history search)
 
-- **Oh My Zsh** - Zsh framework
-- **Starship** - Modern prompt
-- **eza** - Modern ls replacement
-- **bat** - Modern cat replacement
-- **fd** - Modern find replacement
-- **ripgrep** - Fast text search
-- **fzf** - Fuzzy finder
+## 📦 Installation Methods
 
-### Optional
+### Method 1: Automated Installation (Recommended)
+```bash
+# Single command installation
+curl -fsSL https://raw.githubusercontent.com/drsntx/.dotfiles/main/install.sh | bash
+```
 
-- **1Password CLI** - Password management
-- **Docker** - Containerisation
-- **Ansible** - Configuration automation
+### Method 2: Manual Installation
+For users who prefer step-by-step control:
 
-## 📦 Manual Installation
-
-If you prefer to install manually or customise the process:
-
-### 1. Clone the Repository
-
+#### Step 1: Clone Repository
 ```bash
 git clone https://github.com/drsntx/.dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ```
 
-### 2. Install Dependencies
+#### Step 2: Install Dependencies by Platform
 
-#### macOS (Homebrew)
-
+**macOS (Homebrew)**
 ```bash
 # Install Homebrew if needed
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -109,63 +119,51 @@ cd ~/.dotfiles
 brew install zsh git starship eza bat fd ripgrep fzf
 ```
 
-#### Ubuntu/Debian
-
+**Ubuntu/Debian**
 ```bash
 sudo apt update
 sudo apt install zsh git curl build-essential
 
-# Starship
+# Install Starship
 curl -sS https://starship.rs/install.sh | sh
 
-# eza
+# Install eza
 wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
 echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
 sudo apt update && sudo apt install eza
 
-# Other tools
+# Install remaining tools
 sudo apt install bat fd-find ripgrep fzf
 ```
 
-#### Fedora
-
+**Fedora**
 ```bash
 sudo dnf install zsh git curl gcc gcc-c++ make
 curl -sS https://starship.rs/install.sh | sh
 sudo dnf install eza bat fd-find ripgrep fzf
 ```
 
-#### Arch Linux
-
+**Arch Linux**
 ```bash
 sudo pacman -S zsh git curl base-devel
 curl -sS https://starship.rs/install.sh | sh
 sudo pacman -S eza bat fd ripgrep fzf
 ```
 
-### 3. Install Oh My Zsh
-
+#### Step 3: Install Oh My Zsh and Plugins
 ```bash
+# Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
 
-### 4. Install Zsh Plugins
-
-```bash
-# zsh-autosuggestions
+# Install essential plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-
-# zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-
-# zsh-history-substring-search
 git clone https://github.com/zsh-users/zsh-history-substring-search ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search
 ```
 
-### 5. Create Symlinks
-
+#### Step 4: Create Symbolic Links
 ```bash
-# Backup existing files
+# Backup existing configuration
 [[ -f ~/.zshrc ]] && mv ~/.zshrc ~/.zshrc.backup
 
 # Create symlinks
@@ -174,152 +172,167 @@ mkdir -p ~/.config/starship
 ln -sf ~/.dotfiles/starship/starship.toml ~/.config/starship/starship.toml
 ```
 
-### 6. Set Zsh as Default Shell
-
+#### Step 5: Set Default Shell
 ```bash
 chsh -s $(which zsh)
 ```
 
-## ⚙️ Configuration
+## ⚙️ Configuration Modules
 
-### Configuration Modules
+### OS Detection (`os_detection.zsh`)
+Automatically detects your operating system and configures platform-specific settings:
+- **macOS**: Homebrew paths for both Intel and Apple Silicon
+- **Linux**: Distribution-specific package manager integration
+- **Cross-platform**: Universal tool configuration
 
-#### `os_detection.zsh`
+### Aliases (`aliases.zsh`)
+Comprehensive alias collection organised by category:
 
-Automatically detects the operating system and configures platform-specific paths:
+**File Operations**
+- `ll` - Detailed file listing with eza
+- `la` - All files with detailed information
+- `lt` - Tree view of directories
+- `..`, `...` - Quick directory navigation
 
-- **macOS**: Homebrew paths (Apple Silicon and Intel)
-- **Linux**: Standard paths and distribution-specific settings
+**Git Shortcuts**
+- `g` - Git command shortcut
+- `ga` - Git add
+- `gc` - Git commit
+- `gp` - Git push
+- `gst` - Git status
+- `glog` - Pretty git log
 
-#### `aliases.zsh`
+**Development Tools**
+- `python` → `python3`
+- `pip` → `pip3`
+- `d` - Docker shortcut
+- `dc` - Docker Compose
 
-Aliases organised by category:
+**System Management**
+- `reload` - Reload shell configuration
+- `c` - Clear screen
+- Platform-specific package manager shortcuts
 
-- **Navigation**: `..`, `...`, `~`, `-`
-- **Files**: `ll`, `la`, `lt` (with eza)
-- **Git**: `g`, `ga`, `gc`, `gp`, `gst`
-- **Docker**: `d`, `dc`, `dps`, `di`
-- **System**: `reload`, `sysinfo`, `weather`
+### Functions (`functions.zsh`)
+Productivity-enhancing shell functions:
 
-#### `functions.zsh`
+**File Management**
+- `mkcd()` - Create directory and navigate to it
+- `extract()` - Universal archive extraction
+- `backup()` - Create timestamped file backups
 
-Useful functions for productivity:
-
-- `mkcd()` - Create directory and navigate
-- `extract()` - Extract any compressed file
-- `backup()` - Create timestamped backup
-- `serve()` - Quick HTTP server
+**Development Utilities**
+- `serve()` - Quick HTTP server for testing
 - `genpass()` - Generate secure passwords
+- `myip()` - Display public and local IP addresses
 
-#### `plugins.zsh`
+**System Information**
+- `sysinfo()` - Comprehensive system information
+- `weather()` - Current weather information
+- `clean_history()` - Clean and optimise shell history
 
-Optimised plugin configuration:
+### Plugin Management (`plugins.zsh`)
+Intelligent plugin loading with error handling:
+- **Autosuggestions**: History-based command suggestions
+- **Syntax Highlighting**: Real-time command syntax validation
+- **History Search**: Intelligent history substring search
+- **FZF Integration**: Enhanced file and command search
 
-- **autosuggestions**: History-based suggestions
-- **syntax-highlighting**: Real-time syntax highlighting
-- **history-substring-search**: Intelligent history search
-- **FZF**: Complete integration with preview
+### Path Management (`paths.zsh`)
+Intelligent PATH configuration:
+- Cross-platform path detection
+- Development tool integration (Rust, Go, Node.js, Python)
+- XDG Base Directory compliance
+- Environment variable management
 
-### Customisation
+## 🎨 Customisation
 
-#### Local Aliases
+### Local Configuration Files
+Create these files for personal customisations that won't be version controlled:
 
-Create `~/.aliases.local` for personal aliases:
-
+**`~/.zshrc.local`** - Personal Zsh configuration
 ```bash
-# Your custom aliases
+# Custom environment variables
+export WORK_PROJECT_PATH="/path/to/work/projects"
+export PERSONAL_API_KEY="your-api-key"
+
+# Custom functions
+work() { cd "$WORK_PROJECT_PATH" }
+```
+
+**`~/.aliases.local`** - Personal aliases
+```bash
+# Project shortcuts
 alias work='cd ~/Projects/work'
 alias personal='cd ~/Projects/personal'
+
+# Custom commands
+alias deploy='./scripts/deploy.sh'
 ```
 
-#### Local Environment Variables
-
-Create `~/.env.local` for specific variables:
-
+**`~/.env.local`** - Environment variables
 ```bash
 export CUSTOM_VAR="value"
-export API_KEY="your_key_here"
+export API_ENDPOINT="https://api.example.com"
 ```
 
-#### Local Zsh Configuration
+### Starship Prompt Customisation
+Edit `~/.dotfiles/starship/starship.toml` to customise your prompt:
+- OS icons and system information
+- Git branch and status indicators
+- Command execution time
+- Python virtual environment display
+- Docker context information
 
-Create `~/.zshrc.local` for specific configurations:
+## 🔐 1Password Integration
 
-```bash
-# Local configurations that shouldn't be versioned
-export WORK_PROJECT_PATH="/path/to/work/projects"
-```
-
-## 🔐 1Password Configuration
-
-### SSH Agent
-
-1Password can manage your SSH keys automatically:
-
+### SSH Key Management
+Automatic SSH key management through 1Password:
 1. Install 1Password and 1Password CLI
-2. Configure SSH agent in 1Password
-3. Configurations are already included in dotfiles
+2. Configure SSH agent in 1Password settings
+3. SSH keys are automatically loaded and managed
 
 ### CLI Integration
-
-To use 1Password CLI with secure aliases:
-
+Secure command execution with 1Password:
 ```bash
-# Already configured in dotfiles
-alias brew="op plugin run -- brew"  # Homebrew with 1Password
+# Homebrew with 1Password integration
+alias brew="op plugin run -- brew"
 ```
 
-## 🎨 Starship Customisation
-
-The Starship prompt is configured with:
-
-- **OS Icons**: Shows current operating system
-- **Git Information**: Branch, status and modifications
-- **Command Duration**: Execution time
-- **Python Environments**: Virtualenv and version
-- **Docker Integration**: Context when relevant
-
-To customise, edit `~/.dotfiles/starship/starship.toml`.
-
-## 🔄 Maintenance
+## 🔄 Maintenance and Updates
 
 ### Update Dotfiles
-
 ```bash
 cd ~/.dotfiles
 git pull origin main
+source ~/.zshrc
 ```
 
-### Update Dependencies
+### Update System Dependencies
 
-#### macOS
-
+**macOS**
 ```bash
-brew update && brew upgrade
+brew update && brew upgrade && brew cleanup
 ```
 
-#### Ubuntu/Debian
-
+**Ubuntu/Debian**
 ```bash
 sudo apt update && sudo apt upgrade
 ```
 
-#### Fedora
-
+**Fedora**
 ```bash
 sudo dnf update
 ```
 
-#### Arch Linux
-
+**Arch Linux**
 ```bash
 sudo pacman -Syu
 ```
 
-### Clean History
-
+### Clean Shell History
 ```bash
-# Use the included function
+# Use the built-in function
 clean_history
 
 # Or run the script directly
@@ -328,8 +341,9 @@ clean_history
 
 ## 🚨 Troubleshooting
 
-### Zsh is not the Default Shell
+### Common Issues and Solutions
 
+**Zsh Not Default Shell**
 ```bash
 # Check available shells
 cat /etc/shells
@@ -338,55 +352,80 @@ cat /etc/shells
 chsh -s $(which zsh)
 ```
 
-### Plugins Don't Load
-
+**Plugins Not Loading**
 ```bash
-# Check if Oh My Zsh is installed
+# Verify Oh My Zsh installation
 ls -la ~/.oh-my-zsh
 
-# Reinstall plugins
+# Reinstall plugins if needed
 cd ~/.oh-my-zsh/custom/plugins
 rm -rf zsh-*
-# Run plugin installation again
+# Re-run plugin installation commands
 ```
 
-### Starship Doesn't Appear
-
+**Starship Prompt Missing**
 ```bash
-# Check if installed
+# Check installation
 which starship
 
-# Check configuration
+# Verify configuration
 echo $STARSHIP_CONFIG
 
-# Reinstall
+# Reinstall if needed
 curl -sS https://starship.rs/install.sh | sh
 ```
 
-### Modern Tools Don't Work
-
+**Modern Tools Not Found**
 ```bash
-# Check installation
+# Check tool availability
 which eza bat fd rg fzf
 
-# Reinstall according to your operating system
+# Reinstall based on your system
+# Follow platform-specific installation instructions
+```
+
+### Debug Mode
+For detailed troubleshooting:
+```bash
+# Run with debug output
+zsh -x ~/.zshrc
+
+# Check specific module loading
+source ~/.dotfiles/zsh/zsh.d/aliases.zsh
 ```
 
 ## 🤝 Contributing
 
-This is a personal repository, but suggestions are welcome:
+This is a personal dotfiles repository, but contributions are welcome:
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Open a Pull Request
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/improvement`)
+3. **Commit** your changes (`git commit -am 'Add improvement'`)
+4. **Push** to the branch (`git push origin feature/improvement`)
+5. **Create** a Pull Request
+
+### Contribution Guidelines
+- Maintain cross-platform compatibility
+- Follow existing code style and organisation
+- Test changes on multiple systems when possible
+- Update documentation for new features
 
 ## 📄 Licence
 
-Personal configuration files - use at your own discretion.
+Personal configuration files distributed under MIT licence. Use at your own discretion.
+
+## 📞 Support
+
+- **Issues**: Report bugs and request features via GitHub Issues
+- **Discussions**: General questions and suggestions via GitHub Discussions
+- **Documentation**: Additional guides available in the repository wiki
 
 ---
 
 **Author**: Daniel Santos  
-**Contact**: [GitHub](https://github.com/drsntx)  
+**Role**: IT Architect Specialist
+**Contact**: [GitHub Profile](https://github.com/drsntx)  
 **Last Updated**: June 2025
+
+*Optimised for productivity, built for professionals.*
+

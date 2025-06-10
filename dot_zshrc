@@ -2,11 +2,19 @@
 # Daniel Santos' .zshrc
 # Main Zsh configuration file
 
+# ============================================================================
+# BASIC INITIALIZATION (MUST COME FIRST)
+# ============================================================================
+
 # Set ZDOTDIR if not already set
 export ZDOTDIR="${ZDOTDIR:-$HOME/.dotfiles/zsh}"
 
 # Create zsh directory if it doesn't exist
 [[ ! -d "$ZDOTDIR" ]] && mkdir -p "$ZDOTDIR"
+
+# ============================================================================
+# OH MY ZSH CONFIGURATION (BEFORE MODULES)
+# ============================================================================
 
 # Path to Oh My Zsh installation
 export ZSH="$HOME/.oh-my-zsh"
@@ -25,32 +33,85 @@ plugins=(
     zsh-history-substring-search
 )
 
-# Load Oh My Zsh if available
-[[ -f "$ZSH/oh-my-zsh.sh" ]] && source "$ZSH/oh-my-zsh.sh"
-
-# Load all configuration files from zsh.d directory
-if [[ -d "$HOME/.dotfiles/zsh/zsh.d" ]]; then
-    for config_file in "$HOME/.dotfiles/zsh/zsh.d"/*.zsh; do
-        [[ -r "$config_file" ]] && source "$config_file"
-    done
+# Load Oh My Zsh FIRST (if available)
+if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
+    source "$ZSH/oh-my-zsh.sh"
+else
+    echo "⚠️  Oh My Zsh not found. Run: sh -c \"\$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
 fi
+
+# ============================================================================
+# INITIALIZE COMPLETIONS (BEFORE USING COMPDEF)
+# ============================================================================
+
+# Initialize completions BEFORE loading modules
+autoload -Uz compinit
+compinit
+
+# ============================================================================
+# LOAD DOTFILES MODULES (SPECIFIC ORDER)
+# ============================================================================
+
+# Function to safely load modules
+load_dotfile_module() {
+    local module_file="$1"
+    if [[ -r "$module_file" ]]; then
+        source "$module_file"
+    else
+        echo "⚠️  Module not found: $module_file"
+    fi
+}
+
+# Load modules in correct order
+if [[ -d "$HOME/.dotfiles/zsh/zsh.d" ]]; then
+    # 1. OS detection (first)
+    load_dotfile_module "$HOME/.dotfiles/zsh/zsh.d/os_detection.zsh"
+    
+    # 2. Path configuration
+    load_dotfile_module "$HOME/.dotfiles/zsh/zsh.d/paths.zsh"
+    
+    # 3. History configuration
+    load_dotfile_module "$HOME/.dotfiles/zsh/zsh.d/history.zsh"
+    
+    # 4. Aliases
+    load_dotfile_module "$HOME/.dotfiles/zsh/zsh.d/aliases.zsh"
+    
+    # 5. Functions
+    load_dotfile_module "$HOME/.dotfiles/zsh/zsh.d/functions.zsh"
+    
+    # 6. Plugins (after everything else)
+    load_dotfile_module "$HOME/.dotfiles/zsh/zsh.d/plugins.zsh"
+    
+    # 7. Initialization (last)
+    load_dotfile_module "$HOME/.dotfiles/zsh/zsh.d/init.zsh"
+else
+    echo "⚠️  Module directory not found: $HOME/.dotfiles/zsh/zsh.d"
+fi
+
+# ============================================================================
+# EXTERNAL PLUGINS (AFTER OH MY ZSH)
+# ============================================================================
+
+# Load external plugins manually if Oh My Zsh plugins don't work
+ZSH_CUSTOM_PLUGINS="$HOME/.oh-my-zsh/custom/plugins"
+
+# Key bindings for history substring search
+if [[ -f "$ZSH_CUSTOM_PLUGINS/zsh-history-substring-search/zsh-history-substring-search.zsh" ]]; then
+    bindkey '^[[A' history-substring-search-up
+    bindkey '^[[B' history-substring-search-down
+    bindkey -M vicmd 'k' history-substring-search-up
+    bindkey -M vicmd 'j' history-substring-search-down
+fi
+
+# ============================================================================
+# FINAL CONFIGURATIONS
+# ============================================================================
 
 # Load clean_history script function
 [[ -f "$HOME/.dotfiles/clean_history.zsh" ]] && source "$HOME/.dotfiles/clean_history.zsh"
 
-# Initialize completions
-autoload -Uz compinit
-compinit
-
-# Key bindings for history substring search
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
-
 # FZF integration if available
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
-# Load local customizations if they exist
+# Load local customizations (ALWAYS LAST)
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
-
